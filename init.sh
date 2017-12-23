@@ -41,5 +41,8 @@ then
 # Install a few base packages
 eval "$PACMAN git vim python3"
 
+# Grab a few python libs
+pip3 install wget
+
 # Execute install scripts (assumes same dir)
-python3 prov.py
+sudo python3 prov.py
