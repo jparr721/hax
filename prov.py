@@ -22,7 +22,7 @@ goUrl = "https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz"
 # Make sure it's running in sudo
 euid = os.geteuid()
 if euid != 0:
-    print "Script not started as root. Running sudo.."
+    print("Script not started as root. Running sudo..")
     args = ['sudo', sys.executable] + sys.argv + [os.environ]
     # the next line replaces the currently-running process with the sudo
     os.execlpe('sudo', *args)
