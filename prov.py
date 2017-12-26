@@ -86,7 +86,7 @@ def serverInstall():
     print("1 - Apache\t\t2 - Nginx")
     print("\n")
     print("Databases:")
-    print("3 - MySql\t\t4 - Postgres\t\t5 - MongoDB (Not Recommended for prod)")
+    print("3 - MySql\t\t4 - Postgres\t\t5 - MongoDB")
     options = list()
     options = input("Select options: (Comma separated ex. 1,2,3)")
     numbers = options.split(',')
