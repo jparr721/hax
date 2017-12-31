@@ -10,6 +10,9 @@ def createTables():
     os.system("sudo systemctl restart postgresql")
     commands = (
         """
+        CREATE EXTENSION chkpass;
+        """,
+        """
         CREATE TABLE logins (
             login_id SERIAL PRIMARY KEY,
             email VARCHAR(100) NOT NULL,
@@ -54,8 +57,8 @@ def createTables():
     )
     conn = None
     try:
-        # Set up credentials
-        conn = psycopg2.connect(database='unified', user='unified', host='localhost')
+        # Set up credentials (change password on serverjjj)
+        conn = psycopg2.connect(database='unified', user='unified', host='localhost', password='dbpass')
 
         # Connect to postgres
         cur = conn.cursor()
@@ -65,8 +68,8 @@ def createTables():
             cur.execute(command)
         cur.close()
         conn.commit()
-    except psycopg2.DatabaseError, error:
-        print(error)
+    except psycopg2.DatabaseError as e:
+        print(e)
         exit()
     finally:
         if conn is not None:
