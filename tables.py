@@ -55,7 +55,7 @@ def createTables():
     conn = None
     try:
         # Set up credentials
-        conn = psycopg2.connect(database='unified', user='unified')
+        conn = psycopg2.connect(database='unified', user='unified', host='localhost')
 
         # Connect to postgres
         cur = conn.cursor()
