@@ -1,30 +1,34 @@
 #!/bin/bash
-# Ask for admin password
-sudo -v
 
-echo "Initializing..."
-apt-get update && apt-get upgrade -y
+# Make sure being ran as root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root to install properly"
+    exit 1
+fi
 
-echo "Creating settings..."
-echo "Install pathogen..."
-mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# Install dependencies to make
+# running other scripts go smoothly
 
-echo "Adding syntax checking"
-cd ~/.vim/bundle && \
-git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
-mkdir ~/_install
-git clone https://github.com/jparr721/doot-doot.git ~/_install
+sudo apt-get update && sudo apt-get install -y python3 python3-pip
 
-touch ~/.vimrc
-ln -s ~/doot-doot/vimrc ~/.vimrc
+pip3 install psycopg2 config wget
 
-echo "Load vim color scheme..."
-cd ~/.vim/bundle && git clone https://github.com/ajmwagar/vim-deus.git
+wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 
-echo alias ll="ls -al" >> ~/.bashrc
+sudo tar -xvf go1.9.2.linux-amd64.tar.gz
+sudo mv go /usr/local
 
-sudo apt-get install -y python3
+export GOROOT=/usr/local/go
 
-sudo pip3 install wget
+export GOPATH=$HOME/www
 
-sudo python3 prov.py
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+echo "Verifying install..."
+echo "If go version does not show up, something is wrong"
+go version
+sleep(2)
+
+echo "Verifying environment variables"
+go env
+sleep(2)
