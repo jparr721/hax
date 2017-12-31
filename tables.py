@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import psycopg2
-from config import config
+from config import Config
 import os
 import sys
 
@@ -56,7 +56,7 @@ def createTables():
     conn = None
     try:
         # Read connection params
-        params = config()
+        params = Config()
         # Connect to postgres
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
