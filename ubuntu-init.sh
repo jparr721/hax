@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#RUN THIS USING `source ubuntu-init.sh` or it won't export the gopath automatically!
+
 # Make sure being ran as root
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root to install properly"
