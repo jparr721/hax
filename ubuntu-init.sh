@@ -15,9 +15,11 @@ pip3 install psycopg2 config wget
 
 wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 
+echo "Extracting go to /usr/local/go..."
 sudo tar -xvf go1.9.2.linux-amd64.tar.gz
 sudo mv go /usr/local
 
+echo "Establishing go paths"
 export GOROOT=/usr/local/go
 
 export GOPATH=$HOME/www
