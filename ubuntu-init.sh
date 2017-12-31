@@ -29,8 +29,6 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 echo "Verifying install..."
 echo "If go version does not show up, something is wrong"
 go version
-sleep(2)
 
 echo "Verifying environment variables"
 go env
-sleep(2)
