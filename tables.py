@@ -65,8 +65,9 @@ def createTables():
             cur.execute(command)
         cur.close()
         conn.commit()
-    except (Exception(), psycopg2.DatabaseError) as error:
+    except psycopg2.DatabaseError, error:
         print(error)
+        exit()
     finally:
         if conn is not None:
             conn.close()
@@ -75,4 +76,6 @@ if __name__ == '__main__':
     if euid != 0:
         raise EnvironmentError("Please run this script as root.")
         exit()
+
+    print("MAKE SURE YOU RUN THIS AS THE DATABASE USER")
     createTables()
