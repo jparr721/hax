@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import psycopg2
-from config import Config
 import os
 import sys
 
@@ -55,10 +54,10 @@ def createTables():
     )
     conn = None
     try:
-        # Read connection params
-        params = Config()
+        # Set up credentials
+        conn = psycopg2.connect(database='unified', user='postgres')
+
         # Connect to postgres
-        conn = psycopg2.connect(**params)
         cur = conn.cursor()
 
         # Create tables
