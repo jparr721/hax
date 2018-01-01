@@ -25,8 +25,8 @@ def createTables():
             first_name VARCHAR(50) NOT NULL,
             last_name VARCHAR(50) NOT NULL,
             user_name VARCHAR(100) NOT NULL,
-            restricted boolean NOT NULL
-            FOREIGN KEY (login_id) REFERENCES logins (login_id) ON UPDATE CASCADE ON DELETE CASCADE
+            restricted boolean NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES logins (login_id) ON UPDATE CASCADE ON DELETE CASCADE
         )
         """,
         """
