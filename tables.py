@@ -49,7 +49,7 @@ def createTables():
             school_name CHAR(256) NOT NULL,
             school_address_1 VARCHAR(256) NOT NULL,
             school_address_2 VARCHAR(256) NOT NULL,
-            school_state CHAR(2) NOT NULL,
+            school_state CHAR(2) NOT NULL
         )
         """
     )
