@@ -1,13 +1,42 @@
 #!/usr/bin/python3
 
-import psycopg2
 import os
 import sys
 
-def createTables():
+# This is a ready-to-go script that will make your database tables for you on Ubuntu and Postgres
+runscript = input("Have you set up your postgres roles yet?(y/n) ")
+i = 0
+while runscript != "y" or runscript != "n" or i < 5:
+    if (i >= 5):
+        print("Too many invalid attempts, exiting...")
+        sys.exit()
+    if (runscript == "y"):
+        runScript(True)
+    elif (runscript == "n"):
+        runScript(False)
+    print("Invalid option")
+    i++
+
+def initializeDatabase():
     # Install postgres extensions if not already in there
+    print("\nInstalling postgresql extensions...")
     os.system("sudo apt-get install -y postgresql-contrib")
-    os.system("sudo systemctl restart postgresql")
+
+    # Enable to make sure it runs across restarts
+    print("\nEnabling postgresql...")
+    os.system("sudo systemctl enable postgresql")
+
+    # Get postgres communication dependencies
+    pip.main(['install', psycopg2])
+    pip.main(['install', pygresql])
+
+import psycopg2
+import pygresql
+
+def createTables():
+        dbname = input("Enter database name to connect to: ")
+        dbuser = input("Enter database user to connect with: ")
+
     commands = (
         """
         CREATE EXTENSION chkpass;
@@ -40,7 +69,7 @@ def createTables():
     )
     conn = None
     try:
-        # Set up credentials (change password on serverjjj)
+        # Set up credentials
         conn = psycopg2.connect(database='dbname', user='dbuser', host='localhost', password='dbpass')
 
         # Connect to postgres
@@ -57,11 +86,14 @@ def createTables():
     finally:
         if conn is not None:
             conn.close()
-if __name__ == '__main__':
-    euid = os.geteuid()
-    if euid != 0:
-        raise EnvironmentError("Please run this script as root.")
-        exit()
-
-    print("MAKE SURE YOU RUN THIS AS THE DATABASE USER")
-    createTables()
+def runScipt(ready):
+    if (ready):
+        print("MAKE SURE YOU RUN THIS AS THE DATABASE USER\n\n")
+        initializeDatabase()
+        createTables()
+    else:
+        print("Please set up the database user before running this script")
+        print("=====================Instructions=========================")
+        print("Follow this link and then re run this code, you must create a new role and a new database for this to work.")
+        print("https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04#create-a-new-role")
+        sys.exit()
