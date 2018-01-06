@@ -15,7 +15,7 @@ while runscript != "y" or runscript != "n" or i < 5:
     elif (runscript == "n"):
         runScript(False)
     print("Invalid option")
-    i++
+    i += 1
 
 def initializeDatabase():
     # Install postgres extensions if not already in there
