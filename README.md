@@ -1,2 +1,2 @@
-# Scrips
-Some of these are useful, others are unfinished trash
+# Scripts
+For when I need to automate something
