@@ -23,6 +23,18 @@ app.get('/', (req, res) => {
     });
   }
 
-  res.send("<h1>404</h1>");
+  res.send("<h1>You are simply in the wrong place, friend.</h1>");
+});
+
+app.get('/prize', (req, res) => {
+  res.send('Hey! You found the secret route! Go to /win to get the root password');
+});
+
+app.get('/win', (req, res) => {
+  res.send('LOL you thought!');
+});
+
+app.get('/hint', (req, res) => {
+  res.send('Remember to always eat your cookies and check their encoding twice!');
 });
 app.listen(3000);
