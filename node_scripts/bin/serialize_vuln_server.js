@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
     if (obj.username) {
       const sum = eval(obj.num + obj.num);
       res.send(`Hey ${obj.username} ${obj.num} ${obj.num} is ${sum}`);
+      res.send("<h1>If the truth is what you seek, for a /prize/, you must compete.</h1>");
     }
     else res.send("Error: Invalid username type");
   }
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
   }
 
   res.send("<h1>If the truth is what you seek, for a /prize/, you must compete.</h1>");
-  setTimeout(() => res.send('Routes: /prize, /win, /hint? Yeah that\'s a good amount for this lab...'), 1000);
+  // setTimeout(() => res.send('Routes: /prize, /win, /hint? Yeah that\'s a good amount for this lab...'), 1000);
 });
 
 app.get('/prize', (req, res) => {
