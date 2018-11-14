@@ -18,12 +18,13 @@ app.get('/', (req, res) => {
   }
   else {
     res.cookie('profile', "eyJ1c2VybmFtZSI6IkR1bW15IiwiY291bnRyeSI6IklkayBQcm9iYWJseSBTb21ld2hlcmUgRHVtYiIsImNpdHkiOiJMYW1ldG93biIsIm51bSI6IjIifQ==", {
-      maxAge: 900000,
+      maxAge: 90000,
       httpOnly: true
     });
   }
 
-  res.send("<h1>You are simply in the wrong place, friend.</h1>");
+  res.send("<h1>If the truth is what you seek, for a /prize/, you must compete.</h1>");
+  setTimeout(() => res.send('Routes: /prize, /win, /hint? Yeah that\'s a good amount for this lab...'), 1000);
 });
 
 app.get('/prize', (req, res) => {
@@ -37,4 +38,15 @@ app.get('/win', (req, res) => {
 app.get('/hint', (req, res) => {
   res.send('Remember to always eat your cookies and check their encoding twice!');
 });
-app.listen(3000);
+
+app.get('/lel', (req, res) => {
+  res.send('https://www.youtube.com/results?search_query=reverse+shell');
+});
+
+app.get('/dude/holy/shit/come/on/here/is/the/answer', (req, res) => {
+  res.send('https://github.com/jparr721/hax/blob/master/node_scripts/bin/serialize_vulnerability.js');
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
